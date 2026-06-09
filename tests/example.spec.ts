@@ -12,6 +12,13 @@ test('has title', async ({ page }) => {
   await expect(page).toHaveTitle(/Playwright/);
 });
 
+test('has incorrect title', async ({ page }) => {
+  await page.goto(env.API_URL);
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/Playwright_123/);
+});
+
 test('get started link', async ({ page }) => {
   await page.goto(env.API_URL);
 
