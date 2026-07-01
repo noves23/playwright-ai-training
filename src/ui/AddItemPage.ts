@@ -13,7 +13,7 @@ export class AddItemPage extends BasePage {
         date: string,
         mileage: string,
         color: string,
-        //validPermission: boolean,
+        validPermission: boolean
     ): Promise<void> {
         //togel to verify
         //locators to export.
@@ -23,7 +23,9 @@ export class AddItemPage extends BasePage {
         await this.page.getByRole('textbox', { name: 'Date' }).fill(date);
         await this.page.getByRole('spinbutton', { name: 'Mileage' }).fill(mileage);
         await this.page.getByRole('textbox', { name: 'Color' }).fill(color);
-        //await this.page.getByRole('switch', { name: 'Valid Permission' }).check();
+        if (validPermission) {
+            await this.page.getByRole('switch', { name: 'Valid Permission' }).check();
+        }
         await this.page.click('button[type="submit"]');
     }
 
@@ -32,7 +34,8 @@ export class AddItemPage extends BasePage {
         model: string,
         date: string,
         mileage: string,
-        color: string
+        color: string,
+        validPermission: boolean
     ): Promise<void> {
         // Implementation for editing an item
         await this.page.getByRole('button', { name: 'Edit' }).last().click();
@@ -42,7 +45,7 @@ export class AddItemPage extends BasePage {
     }
 
     async deleteItem(): Promise<void> {
-        // Implementation for deleting an item
+        await this.page.getByRole('button', { name: 'Delete' }).last().click();
     }
 
     async validateItemAdded(
@@ -51,6 +54,7 @@ export class AddItemPage extends BasePage {
         date: string,
         mileage: string,
         color: string,
+        validPermission: boolean
     ): Promise<void> {
         await this.page.getByRole('button', { name: 'Edit' }).last().click();
         const itemsBrand = await this.page.getByRole('textbox', { name: 'Brand' }).inputValue();
@@ -63,12 +67,9 @@ export class AddItemPage extends BasePage {
         expect(itemsMileage).toBe(mileage);
         const itemsColor = await this.page.getByRole('textbox', { name: 'Color' }).inputValue();
         expect(itemsColor).toBe(color);
-        
+        const itemsValidPermission = await this.page.getByRole('switch', { name: 'Valid Permission' }).isChecked();
+        expect(itemsValidPermission).toBe(validPermission);
         await this.page.click('button[type="submit"]');
     }
 
-    async validateNumberOfItems(expectedCount: number): Promise<void> {
-        const itemsBrand = await this.page.getByRole('textbox', { name: 'Brand' }).inputValue();
-        await expect(itemsLocator).toHaveCount(expectedCount);
-    }
 }
