@@ -1,0 +1,12 @@
+{
+    "NODE_ENV": "abnahme",
+    "PORT": 3000,
+    "API_URL": "https://playwright.dev/",
+    "ITEM_URL": "http://localhost:5173/",
+    "DB": {
+        "HOST": "abnahme",
+        "PORT": 5432,
+        "USER": "user",
+        "PASSWORD": "password"
+    }
+}

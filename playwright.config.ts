@@ -44,7 +44,7 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    video: 'only-on-failure',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
@@ -52,6 +52,12 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+        {
+      name: "integration",
+    },
+    {
+      name: "abnahme",
+    },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

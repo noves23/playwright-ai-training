@@ -1,10 +1,10 @@
 {
-    "NODE_ENV": "production",
+    "NODE_ENV": "integration",
     "PORT": 3000,
     "API_URL": "https://playwright.dev/",
     "ITEM_URL": "http://localhost:5173/",
     "DB": {
-        "HOST": "localhost",
+        "HOST": "integration",
         "PORT": 5432,
         "USER": "user",
         "PASSWORD": "password"

@@ -13,6 +13,13 @@ on:
           - 'smoke'
           - 'regression'
           - 'sanity'
+      environment:
+        description: Test environment
+        required: true
+        type: choice
+        options:
+          - integration
+          - abnahme
 
 jobs:
   run-tests:
@@ -33,14 +40,15 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    - name: Run Playwright tests by tag
+    - name: Run Playwright tests
       env:
         TAG: ${{ github.event.inputs.test_tag }}
+        ENVIRONMENT: ${{ github.event.inputs.environment }}
       run: |
         if [ "$TAG" = "all" ]; then
-          npx playwright test
+          npx playwright test --project="$ENVIRONMENT"
         else
-          npx playwright test --grep "@$TAG"
+          npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
         fi
 
     - name: Upload Playwright Report
