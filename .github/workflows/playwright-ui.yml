@@ -21,6 +21,11 @@ on:
           - integration
           - abnahme
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   run-tests:
     timeout-minutes: 60
@@ -32,7 +37,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 22
 
     - name: Install dependencies
       run: npm ci
@@ -51,10 +56,29 @@ jobs:
           npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
         fi
 
+    - name: Install Allure CLI
+      if: always()
+      run: npm install -g allure-commandline
+
+    - name: Generate Allure report
+      if: always()
+      run: |
+          allure generate allure-results --clean -o allure-report
+
+    - name: Upload Pages artifact
+      if: always()
+      uses: actions/upload-pages-artifact@v3
+      with:
+          path: allure-report
+
+    - name: Deploy to GitHub Pages
+      if: always()
+      uses: actions/deploy-pages@v4
+
     - name: Upload Playwright Report
       uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+        retention-days: 3
