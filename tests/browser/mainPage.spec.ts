@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-//import env from '../env/env.json';
 import { environments } from '../../config/env';
 import {AddItemPage} from "../../src/ui/AddItemPage";
 import {Item} from "../../src/types";

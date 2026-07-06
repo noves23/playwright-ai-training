@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
-import env from '../env/env.json';
 import {UploadPage} from "../../src/ui/UploadPage";
-import path from 'path';
+import { environments } from '../../config/env';
+
+const env = environments.integration; // Change to the desired environment (integration or abnahme)
 
 test('upload file via button', async ({ page }) => {
   const uploadPage = new UploadPage(page);
