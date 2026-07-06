@@ -30,6 +30,11 @@ jobs:
   run-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
@@ -73,6 +78,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       if: always()
+      id: deployment
       uses: actions/deploy-pages@v4
 
     - name: Upload Playwright Report

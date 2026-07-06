@@ -5,7 +5,7 @@ test.describe('mobile only', () => {
   test.use(devices['iPhone 15']);
 
   test('checkout', async ({ page }) => {
-    ...
+    await page.goto('https://example.com');
   });
 });
 
