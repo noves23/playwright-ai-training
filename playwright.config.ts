@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import {getConfiguration} from '@scripts/getEnvConfig.ts';
+//import {getConfiguration} from '@scripts/getEnvConfig.ts';
 
 /**
  * Read environment variables from file.

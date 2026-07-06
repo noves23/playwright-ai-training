@@ -50,6 +50,10 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
+    - name: Install Allure CLI
+      if: always()
+      run: npm install -g allure-commandline
+
     - name: Run Playwright tests
       env:
         TAG: ${{ github.event.inputs.test_tag }}
@@ -60,10 +64,6 @@ jobs:
         else
           npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
         fi
-
-    - name: Install Allure CLI
-      if: always()
-      run: npm install -g allure-commandline
 
     - name: Generate Allure report
       if: always()
