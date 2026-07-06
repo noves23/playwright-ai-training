@@ -1,7 +1,10 @@
 import { test, expect } from '@playwright/test';
-import env from '../env/env.json';
+//import env from '../env/env.json';
+import { environments } from '../../config/env';
 import {AddItemPage} from "../../src/ui/AddItemPage";
 import {Item} from "../../src/types";
+
+const env = environments.integration; // Change to the desired environment (integration or abnahme)
 
   const itemData: Item = {
     brand: 'Toyota',
@@ -13,7 +16,7 @@ import {Item} from "../../src/types";
   };
 
 
-test('Add and validate new Item', async ({ page }) => {
+test('Add and validate new Item @smoke', async ({ page }) => {
   const addItemPage = new AddItemPage(page);
   await addItemPage.navigateTo(env.ITEM_URL);
 

@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
-import env from '../env/env.json';
+import { environments } from '../../config/env';
+
+const env = environments.integration; // Change to the desired environment (integration or abnahme)
 
 test('should have API_URL environment variable', async () => {
   console.log(`API_URL: ${env.API_URL}`);
