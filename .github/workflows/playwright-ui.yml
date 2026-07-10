@@ -86,13 +86,10 @@ jobs:
       - name: Prepare GitHub Pages structure
         if: always()
         run: |
-          mkdir -p pages/${{ github.event.inputs.environment }}
+          mkdir -p pages
 
-          cp -r allure-report \
-            pages/${{ github.event.inputs.environment }}/allure
-
-          cp -r playwright-report \
-            pages/${{ github.event.inputs.environment }}/playwright
+          cp -r allure-report pages/allure
+          cp -r playwright-report pages/playwright
 
       - name: Deploy reports to GitHub Pages
         if: always()
