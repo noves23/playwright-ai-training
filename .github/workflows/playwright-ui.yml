@@ -12,7 +12,6 @@ on:
           - 'all'
           - 'smoke'
           - 'regression'
-          - 'sanity'
       environment:
         description: Test environment
         required: true
@@ -65,6 +64,12 @@ jobs:
           npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
         fi
 
+    - name: Create Pages directory
+      run: |
+        mkdir pages
+        cp -r allure-report pages/allure
+        cp -r playwright-report pages/playwright
+
     # Optimization 1: Separate history paths per environment
     - name: Checkout GitHub Pages Branch
       if: always()
@@ -99,10 +104,9 @@ jobs:
         ls -tp | grep -v '/$' | tail -n +21 | xargs -I {} rm -- {} || true
 
     - name: Upload Pages artifact
-      if: always()
       uses: actions/upload-pages-artifact@v3
       with:
-          path: gh-pages-dir
+        path: pages
 
     # Deploy the comprehensive multi-environment folder structure
     - name: Deploy to GitHub Pages
