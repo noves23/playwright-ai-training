@@ -4,14 +4,15 @@ on:
   workflow_dispatch:
     inputs:
       test_tag:
-        description: 'Select test tag to run'
+        description: Select test tag to run
         required: true
-        default: 'all'
+        default: all
         type: choice
         options:
-          - 'all'
-          - 'smoke'
-          - 'regression'
+          - all
+          - smoke
+          - regression
+
       environment:
         description: Test environment
         required: true
@@ -22,110 +23,102 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   run-tests:
     timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}${{ github.event.inputs.environment }}/
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 22
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
 
-    - name: Install Allure CLI
-      if: always()
-      run: npm install -g allure-commandline
+      - name: Install Allure CLI
+        run: npm install -g allure-commandline@2.34.1
 
-    - name: Run Playwright tests
-      env:
-        TAG: ${{ github.event.inputs.test_tag }}
-        ENVIRONMENT: ${{ github.event.inputs.environment }}
-      run: |
-        if [ "$TAG" = "all" ]; then
-          npx playwright test --project="$ENVIRONMENT"
-        else
-          npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
-        fi
+      - name: Run Playwright tests
+        env:
+          TAG: ${{ github.event.inputs.test_tag }}
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
+        run: |
+          if [ "$TAG" = "all" ]; then
+            npx playwright test --project="$ENVIRONMENT"
+          else
+            npx playwright test --project="$ENVIRONMENT" --grep "@$TAG"
+          fi
 
-    - name: Create Pages directory
-      run: |
-        mkdir pages
-        cp -r allure-report pages/allure
-        cp -r playwright-report pages/playwright
+      # Checkout existing gh-pages content
+      - name: Checkout gh-pages branch
+        if: always()
+        continue-on-error: true
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
 
-    # Optimization 1: Separate history paths per environment
-    - name: Checkout GitHub Pages Branch
-      if: always()
-      uses: actions/checkout@v4
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages-dir
+      # Restore history for selected environment
+      - name: Restore Allure history
+        if: always()
+        continue-on-error: true
+        run: |
+          mkdir -p allure-results/history
 
-    - name: Copy Environment Allure History
-      if: always()
-      continue-on-error: true
-      run: |
-        mkdir -p allure-results/history
-        cp -r gh-pages-dir/${{ github.event.inputs.environment }}/history/* allure-results/history/ || true
+          cp -r \
+            gh-pages/${{ github.event.inputs.environment }}/allure/history/* \
+            allure-results/history/ || true
 
-    - name: Generate Allure report
-      if: always()
-      run: |
-          allure generate allure-results --clean -o allure-report-env
+      - name: Generate Allure report
+        if: always()
+        run: |
+          allure generate allure-results --clean -o allure-report
 
-    # Optimization 2: Clean up history files (keep last 20 runs)
-    - name: Manage and Clean History
-      if: always()
-      continue-on-error: true
-      run: |
-        mkdir -p gh-pages-dir/${{ github.event.inputs.environment }}
-        cp -r allure-report-env/* gh-pages-dir/${{ github.event.inputs.environment }}/
-        
-        # Clean history files inside the trend data to keep repository small
-        cd gh-pages-dir/${{ github.event.inputs.environment }}/history
-        ls -tp | grep -v '/$' | tail -n +21 | xargs -I {} rm -- {} || true
+      - name: Prepare GitHub Pages structure
+        if: always()
+        run: |
+          mkdir -p pages/${{ github.event.inputs.environment }}
 
-    - name: Upload Pages artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: pages
+          cp -r allure-report \
+            pages/${{ github.event.inputs.environment }}/allure
 
-    # Deploy the comprehensive multi-environment folder structure
-    - name: Deploy to GitHub Pages
-      id: deployment
-      if: always()
-      uses: actions/deploy-pages@v4
+          cp -r playwright-report \
+            pages/${{ github.event.inputs.environment }}/playwright
 
-    # Optimization 3: Add Summary Link to GitHub Job Output
-    - name: Publish Summary Link
-      if: always()
-      run: |
-        echo "### 📊 Test Run Results" >> $GITHUB_STEP_SUMMARY
-        echo "- **Environment:** \`${{ github.event.inputs.environment }}\`" >> $GITHUB_STEP_SUMMARY
-        echo "- **Tag Executed:** \`${{ github.event.inputs.test_tag }}\`" >> $GITHUB_STEP_SUMMARY
-        echo "- **Allure Report Link:** [View Live Report](${{ steps.deployment.outputs.page_url }}${{ github.event.inputs.environment }}/)" >> $GITHUB_STEP_SUMMARY
+      - name: Deploy reports to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./pages
+          destination_dir: ${{ github.event.inputs.environment }}
+          keep_files: true
 
-    - name: Upload Playwright Report
-      uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
-      with:
-        name: playwright-report
-        path: playwright-report
+      - name: Upload Playwright report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ github.event.inputs.environment }}
+          path: playwright-report
+          retention-days: 3
+
+      - name: Publish summary
+        if: always()
+        run: |
+          echo "## Test execution completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Environment | ${{ github.event.inputs.environment }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Tag | ${{ github.event.inputs.test_tag }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Allure Report | https://noves23.github.io/playwright-ai-training/${{ github.event.inputs.environment }}/allure/ |" >> $GITHUB_STEP_SUMMARY
+          echo "| Playwright Report | https://noves23.github.io/playwright-ai-training/${{ github.event.inputs.environment }}/playwright/ |" >> $GITHUB_STEP_SUMMARY
