@@ -1,0 +1,956 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: browser/test11.spec.ts >> test which should pass @regression
+- Location: tests/browser/test11.spec.ts:3:5
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: "Playwright"
+Received: "Accessibility testing | Playwright"
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - region "Skip to main content":
+    - link "Skip to main content" [ref=e3] [cursor=pointer]:
+      - /url: "#__docusaurus_skipToContent_fallback"
+  - navigation "Main" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link "Playwright logo Playwright" [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img "Playwright logo" [ref=e9]
+          - generic [ref=e10]: Playwright
+        - link "Docs" [ref=e11] [cursor=pointer]:
+          - /url: /docs/intro
+        - link "MCP" [ref=e12] [cursor=pointer]:
+          - /url: /mcp/introduction
+        - link "CLI" [ref=e13] [cursor=pointer]:
+          - /url: /agent-cli/introduction
+        - link "API" [ref=e14] [cursor=pointer]:
+          - /url: /docs/api/class-playwright
+        - button "Node.js" [ref=e16] [cursor=pointer]
+      - generic [ref=e17]:
+        - link "GitHub repository" [ref=e18] [cursor=pointer]:
+          - /url: https://github.com/microsoft/playwright
+        - link "Discord server" [ref=e19] [cursor=pointer]:
+          - /url: https://aka.ms/playwright/discord
+        - button "Switch between dark and light mode (currently system mode)" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+        - button "Search (Control+k)" [ref=e25] [cursor=pointer]:
+          - generic [ref=e26]:
+            - img [ref=e27]
+            - generic [ref=e30]: Search
+          - generic [ref=e31]:
+            - generic [ref=e32]: Ctrl
+            - generic [ref=e33]: K
+  - generic [ref=e36]:
+    - complementary [ref=e37]:
+      - navigation "Docs sidebar" [ref=e40]:
+        - list [ref=e41]:
+          - listitem [ref=e42]:
+            - button "Getting Started" [expanded] [ref=e44] [cursor=pointer]:
+              - generic "Getting Started" [ref=e45]
+            - list [ref=e46]:
+              - listitem [ref=e47]:
+                - link "Installation" [ref=e48] [cursor=pointer]:
+                  - /url: /docs/intro
+                  - generic "Installation" [ref=e49]
+              - listitem [ref=e50]:
+                - link "Writing tests" [ref=e51] [cursor=pointer]:
+                  - /url: /docs/writing-tests
+                  - generic "Writing tests" [ref=e52]
+              - listitem [ref=e53]:
+                - link "Generating tests" [ref=e54] [cursor=pointer]:
+                  - /url: /docs/codegen-intro
+                  - generic "Generating tests" [ref=e55]
+              - listitem [ref=e56]:
+                - link "Running and debugging tests" [ref=e57] [cursor=pointer]:
+                  - /url: /docs/running-tests
+                  - generic "Running and debugging tests" [ref=e58]
+              - listitem [ref=e59]:
+                - link "Trace viewer" [ref=e60] [cursor=pointer]:
+                  - /url: /docs/trace-viewer-intro
+                  - generic "Trace viewer" [ref=e61]
+              - listitem [ref=e62]:
+                - link "Setting up CI" [ref=e63] [cursor=pointer]:
+                  - /url: /docs/ci-intro
+                  - generic "Setting up CI" [ref=e64]
+              - listitem [ref=e65]:
+                - link "VS Code" [ref=e66] [cursor=pointer]:
+                  - /url: /docs/getting-started-vscode
+                  - generic "VS Code" [ref=e67]
+          - listitem [ref=e68]:
+            - link "Release notes" [ref=e69] [cursor=pointer]:
+              - /url: /docs/release-notes
+              - generic "Release notes" [ref=e70]
+          - listitem [ref=e71]:
+            - link "Canary releases" [ref=e72] [cursor=pointer]:
+              - /url: /docs/canary-releases
+              - generic "Canary releases" [ref=e73]
+          - listitem [ref=e74]:
+            - button "Playwright Test" [expanded] [ref=e76] [cursor=pointer]:
+              - generic "Playwright Test" [ref=e77]
+            - list [ref=e78]:
+              - listitem [ref=e79]:
+                - link "Agents" [ref=e80] [cursor=pointer]:
+                  - /url: /docs/test-agents
+                  - generic "Agents" [ref=e81]
+              - listitem [ref=e82]:
+                - link "Annotations" [ref=e83] [cursor=pointer]:
+                  - /url: /docs/test-annotations
+                  - generic "Annotations" [ref=e84]
+              - listitem [ref=e85]:
+                - link "Command line" [ref=e86] [cursor=pointer]:
+                  - /url: /docs/test-cli
+                  - generic "Command line" [ref=e87]
+              - listitem [ref=e88]:
+                - link "Configuration" [ref=e89] [cursor=pointer]:
+                  - /url: /docs/test-configuration
+                  - generic "Configuration" [ref=e90]
+              - listitem [ref=e91]:
+                - link "Configuration (use)" [ref=e92] [cursor=pointer]:
+                  - /url: /docs/test-use-options
+                  - generic "Configuration (use)" [ref=e93]
+              - listitem [ref=e94]:
+                - link "Emulation" [ref=e95] [cursor=pointer]:
+                  - /url: /docs/emulation
+                  - generic "Emulation" [ref=e96]
+              - listitem [ref=e97]:
+                - link "Fixtures" [ref=e98] [cursor=pointer]:
+                  - /url: /docs/test-fixtures
+                  - generic "Fixtures" [ref=e99]
+              - listitem [ref=e100]:
+                - link "Global setup and teardown" [ref=e101] [cursor=pointer]:
+                  - /url: /docs/test-global-setup-teardown
+                  - generic "Global setup and teardown" [ref=e102]
+              - listitem [ref=e103]:
+                - link "Parallelism" [ref=e104] [cursor=pointer]:
+                  - /url: /docs/test-parallel
+                  - generic "Parallelism" [ref=e105]
+              - listitem [ref=e106]:
+                - link "Parameterize tests" [ref=e107] [cursor=pointer]:
+                  - /url: /docs/test-parameterize
+                  - generic "Parameterize tests" [ref=e108]
+              - listitem [ref=e109]:
+                - link "Projects" [ref=e110] [cursor=pointer]:
+                  - /url: /docs/test-projects
+                  - generic "Projects" [ref=e111]
+              - listitem [ref=e112]:
+                - link "Reporters" [ref=e113] [cursor=pointer]:
+                  - /url: /docs/test-reporters
+                  - generic "Reporters" [ref=e114]
+              - listitem [ref=e115]:
+                - link "Retries" [ref=e116] [cursor=pointer]:
+                  - /url: /docs/test-retries
+                  - generic "Retries" [ref=e117]
+              - listitem [ref=e118]:
+                - link "Sharding" [ref=e119] [cursor=pointer]:
+                  - /url: /docs/test-sharding
+                  - generic "Sharding" [ref=e120]
+              - listitem [ref=e121]:
+                - link "Timeouts" [ref=e122] [cursor=pointer]:
+                  - /url: /docs/test-timeouts
+                  - generic "Timeouts" [ref=e123]
+              - listitem [ref=e124]:
+                - link "TypeScript" [ref=e125] [cursor=pointer]:
+                  - /url: /docs/test-typescript
+                  - generic "TypeScript" [ref=e126]
+              - listitem [ref=e127]:
+                - link "UI Mode" [ref=e128] [cursor=pointer]:
+                  - /url: /docs/test-ui-mode
+                  - generic "UI Mode" [ref=e129]
+              - listitem [ref=e130]:
+                - link "Web server" [ref=e131] [cursor=pointer]:
+                  - /url: /docs/test-webserver
+                  - generic "Web server" [ref=e132]
+          - listitem [ref=e133]:
+            - button "Guides" [expanded] [ref=e135] [cursor=pointer]:
+              - generic "Guides" [ref=e136]
+            - list [ref=e137]:
+              - listitem [ref=e138]:
+                - link "Library" [ref=e139] [cursor=pointer]:
+                  - /url: /docs/library
+                  - generic "Library" [ref=e140]
+              - listitem [ref=e141]:
+                - link "Accessibility testing" [ref=e142] [cursor=pointer]:
+                  - /url: /docs/accessibility-testing
+                  - generic "Accessibility testing" [ref=e143]
+              - listitem [ref=e144]:
+                - link "Actions" [ref=e145] [cursor=pointer]:
+                  - /url: /docs/input
+                  - generic "Actions" [ref=e146]
+              - listitem [ref=e147]:
+                - link "Assertions" [ref=e148] [cursor=pointer]:
+                  - /url: /docs/test-assertions
+                  - generic "Assertions" [ref=e149]
+              - listitem [ref=e150]:
+                - link "API testing" [ref=e151] [cursor=pointer]:
+                  - /url: /docs/api-testing
+                  - generic "API testing" [ref=e152]
+              - listitem [ref=e153]:
+                - link "Authentication" [ref=e154] [cursor=pointer]:
+                  - /url: /docs/auth
+                  - generic "Authentication" [ref=e155]
+              - listitem [ref=e156]:
+                - link "Auto-waiting" [ref=e157] [cursor=pointer]:
+                  - /url: /docs/actionability
+                  - generic "Auto-waiting" [ref=e158]
+              - listitem [ref=e159]:
+                - link "Best Practices" [ref=e160] [cursor=pointer]:
+                  - /url: /docs/best-practices
+                  - generic "Best Practices" [ref=e161]
+              - listitem [ref=e162]:
+                - link "Browsers" [ref=e163] [cursor=pointer]:
+                  - /url: /docs/browsers
+                  - generic "Browsers" [ref=e164]
+              - listitem [ref=e165]:
+                - link "Chrome extensions" [ref=e166] [cursor=pointer]:
+                  - /url: /docs/chrome-extensions
+                  - generic "Chrome extensions" [ref=e167]
+              - listitem [ref=e168]:
+                - link "Clock" [ref=e169] [cursor=pointer]:
+                  - /url: /docs/clock
+                  - generic "Clock" [ref=e170]
+              - listitem [ref=e171]:
+                - link "Components (experimental)" [ref=e172] [cursor=pointer]:
+                  - /url: /docs/test-components
+                  - generic "Components (experimental)" [ref=e173]
+              - listitem [ref=e174]:
+                - link "Debugging Tests" [ref=e175] [cursor=pointer]:
+                  - /url: /docs/debug
+                  - generic "Debugging Tests" [ref=e176]
+              - listitem [ref=e177]:
+                - link "Dialogs" [ref=e178] [cursor=pointer]:
+                  - /url: /docs/dialogs
+                  - generic "Dialogs" [ref=e179]
+              - listitem [ref=e180]:
+                - link "Downloads" [ref=e181] [cursor=pointer]:
+                  - /url: /docs/downloads
+                  - generic "Downloads" [ref=e182]
+              - listitem [ref=e183]:
+                - link "Evaluating JavaScript" [ref=e184] [cursor=pointer]:
+                  - /url: /docs/evaluating
+                  - generic "Evaluating JavaScript" [ref=e185]
+              - listitem [ref=e186]:
+                - link "Events" [ref=e187] [cursor=pointer]:
+                  - /url: /docs/events
+                  - generic "Events" [ref=e188]
+              - listitem [ref=e189]:
+                - link "Extensibility" [ref=e190] [cursor=pointer]:
+                  - /url: /docs/extensibility
+                  - generic "Extensibility" [ref=e191]
+              - listitem [ref=e192]:
+                - link "Frames" [ref=e193] [cursor=pointer]:
+                  - /url: /docs/frames
+                  - generic "Frames" [ref=e194]
+              - listitem [ref=e195]:
+                - link "Handles" [ref=e196] [cursor=pointer]:
+                  - /url: /docs/handles
+                  - generic "Handles" [ref=e197]
+              - listitem [ref=e198]:
+                - link "Isolation" [ref=e199] [cursor=pointer]:
+                  - /url: /docs/browser-contexts
+                  - generic "Isolation" [ref=e200]
+              - listitem [ref=e201]:
+                - link "Locators" [ref=e202] [cursor=pointer]:
+                  - /url: /docs/locators
+                  - generic "Locators" [ref=e203]
+              - listitem [ref=e204]:
+                - link "Mock APIs" [ref=e205] [cursor=pointer]:
+                  - /url: /docs/mock
+                  - generic "Mock APIs" [ref=e206]
+              - listitem [ref=e207]:
+                - link "Mock browser APIs" [ref=e208] [cursor=pointer]:
+                  - /url: /docs/mock-browser-apis
+                  - generic "Mock browser APIs" [ref=e209]
+              - listitem [ref=e210]:
+                - link "Navigations" [ref=e211] [cursor=pointer]:
+                  - /url: /docs/navigations
+                  - generic "Navigations" [ref=e212]
+              - listitem [ref=e213]:
+                - link "Network" [ref=e214] [cursor=pointer]:
+                  - /url: /docs/network
+                  - generic "Network" [ref=e215]
+              - listitem [ref=e216]:
+                - link "Other locators" [ref=e217] [cursor=pointer]:
+                  - /url: /docs/other-locators
+                  - generic "Other locators" [ref=e218]
+              - listitem [ref=e219]:
+                - link "Pages" [ref=e220] [cursor=pointer]:
+                  - /url: /docs/pages
+                  - generic "Pages" [ref=e221]
+              - listitem [ref=e222]:
+                - link "Page object models" [ref=e223] [cursor=pointer]:
+                  - /url: /docs/pom
+                  - generic "Page object models" [ref=e224]
+              - listitem [ref=e225]:
+                - link "Screenshots" [ref=e226] [cursor=pointer]:
+                  - /url: /docs/screenshots
+                  - generic "Screenshots" [ref=e227]
+              - listitem [ref=e228]:
+                - link "Service Workers" [ref=e229] [cursor=pointer]:
+                  - /url: /docs/service-workers
+                  - generic "Service Workers" [ref=e230]
+              - listitem [ref=e231]:
+                - link "Snapshot testing" [ref=e232] [cursor=pointer]:
+                  - /url: /docs/aria-snapshots
+                  - generic "Snapshot testing" [ref=e233]
+              - listitem [ref=e234]:
+                - link "Test generator" [ref=e235] [cursor=pointer]:
+                  - /url: /docs/codegen
+                  - generic "Test generator" [ref=e236]
+              - listitem [ref=e237]:
+                - link "Touch events (legacy)" [ref=e238] [cursor=pointer]:
+                  - /url: /docs/touch-events
+                  - generic "Touch events (legacy)" [ref=e239]
+              - listitem [ref=e240]:
+                - link "Trace viewer" [ref=e241] [cursor=pointer]:
+                  - /url: /docs/trace-viewer
+                  - generic "Trace viewer" [ref=e242]
+              - listitem [ref=e243]:
+                - link "Videos" [ref=e244] [cursor=pointer]:
+                  - /url: /docs/videos
+                  - generic "Videos" [ref=e245]
+              - listitem [ref=e246]:
+                - link "Visual comparisons" [ref=e247] [cursor=pointer]:
+                  - /url: /docs/test-snapshots
+                  - generic "Visual comparisons" [ref=e248]
+              - listitem [ref=e249]:
+                - link "WebView2" [ref=e250] [cursor=pointer]:
+                  - /url: /docs/webview2
+                  - generic "WebView2" [ref=e251]
+          - listitem [ref=e252]:
+            - button "Migration" [ref=e254] [cursor=pointer]:
+              - generic "Migration" [ref=e255]
+          - listitem [ref=e256]:
+            - button "Integrations" [ref=e258] [cursor=pointer]:
+              - generic "Integrations" [ref=e259]
+          - listitem [ref=e260]:
+            - link "Supported languages" [ref=e261] [cursor=pointer]:
+              - /url: /docs/languages
+              - generic "Supported languages" [ref=e262]
+    - main [ref=e263]:
+      - generic [ref=e265]:
+        - generic [ref=e267]:
+          - article [ref=e268]:
+            - navigation "Breadcrumbs" [ref=e269]:
+              - list [ref=e270]:
+                - listitem [ref=e271]:
+                  - link "Home page" [ref=e272] [cursor=pointer]:
+                    - /url: /
+                    - img [ref=e273]
+                - listitem [ref=e275]:
+                  - generic [ref=e276]: Guides
+                - listitem [ref=e277]:
+                  - generic [ref=e278]: Accessibility testing
+            - generic [ref=e279]:
+              - heading "Accessibility testing" [level=1] [ref=e281]
+              - heading "IntroductionDirect link to Introduction" [level=2] [ref=e282]:
+                - text: Introduction
+                - link "Direct link to Introduction" [ref=e283] [cursor=pointer]:
+                  - /url: "#introduction"
+                  - text: "#"
+              - paragraph [ref=e284]: Playwright can be used to test your application for many types of accessibility issues.
+              - paragraph [ref=e285]: "A few examples of problems this can catch include:"
+              - list [ref=e286]:
+                - listitem [ref=e287]: Text that would be hard to read for users with vision impairments due to poor color contrast with the background behind it
+                - listitem [ref=e288]: UI controls and form elements without labels that a screen reader could identify
+                - listitem [ref=e289]: Interactive elements with duplicate IDs which can confuse assistive technologies
+              - paragraph [ref=e290]:
+                - text: The following examples rely on the
+                - link "@axe-core/playwright" [ref=e291] [cursor=pointer]:
+                  - /url: https://npmjs.org/@axe-core/playwright
+                  - code [ref=e292]: "@axe-core/playwright"
+                - text: package which adds support for running the
+                - link "axe accessibility testing engine" [ref=e293] [cursor=pointer]:
+                  - /url: https://www.deque.com/axe/
+                - text: as part of your Playwright tests.
+              - generic [ref=e294]:
+                - generic [ref=e295]:
+                  - img [ref=e297]
+                  - text: Disclaimer
+                - generic [ref=e299]:
+                  - paragraph [ref=e300]: Automated accessibility tests can detect some common accessibility problems such as missing or invalid properties. But many accessibility problems can only be discovered through manual testing. We recommend using a combination of automated testing, manual accessibility assessments, and inclusive user testing.
+                  - paragraph [ref=e301]:
+                    - text: For manual assessments, we recommend
+                    - link "Accessibility Insights for Web" [ref=e302] [cursor=pointer]:
+                      - /url: https://accessibilityinsights.io/docs/web/overview/?referrer=playwright-accessibility-testing-js
+                    - text: ", a free and open source dev tool that walks you through assessing a website for"
+                    - link "WCAG 2.1 AA" [ref=e303] [cursor=pointer]:
+                      - /url: https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_customize&levels=aaa
+                    - text: coverage.
+              - heading "Example accessibility testsDirect link to Example accessibility tests" [level=2] [ref=e304]:
+                - text: Example accessibility tests
+                - link "Direct link to Example accessibility tests" [ref=e305] [cursor=pointer]:
+                  - /url: "#example-accessibility-tests"
+                  - text: "#"
+              - paragraph [ref=e306]: Accessibility tests work just like any other Playwright test. You can either create separate test cases for them, or integrate accessibility scans and assertions into your existing test cases.
+              - paragraph [ref=e307]: The following examples demonstrate a few basic accessibility testing scenarios.
+              - heading "Scanning an entire pageDirect link to Scanning an entire page" [level=3] [ref=e308]:
+                - text: Scanning an entire page
+                - link "Direct link to Scanning an entire page" [ref=e309] [cursor=pointer]:
+                  - /url: "#scanning-an-entire-page"
+                  - text: "#"
+              - paragraph [ref=e310]: "This example demonstrates how to test an entire page for automatically detectable accessibility violations. The test:"
+              - list [ref=e311]:
+                - listitem [ref=e312]:
+                  - text: Imports the
+                  - code [ref=e313]: "@axe-core/playwright"
+                  - text: package
+                - listitem [ref=e314]: Uses normal Playwright Test syntax to define a test case
+                - listitem [ref=e315]: Uses normal Playwright syntax to navigate to the page under test
+                - listitem [ref=e316]:
+                  - text: Awaits
+                  - code [ref=e317]: AxeBuilder.analyze()
+                  - text: to run the accessibility scan against the page
+                - listitem [ref=e318]:
+                  - text: Uses normal Playwright Test
+                  - link "assertions" [ref=e319] [cursor=pointer]:
+                    - /url: /docs/test-assertions
+                  - text: to verify that there are no violations in the returned scan results
+              - generic [ref=e320]:
+                - tablist [ref=e321]:
+                  - tab "TypeScript" [selected] [ref=e322] [cursor=pointer]
+                  - tab "JavaScript" [ref=e323] [cursor=pointer]
+                - tabpanel [ref=e325]:
+                  - generic [ref=e327]:
+                    - code [ref=e329]:
+                      - generic [ref=e330]: "import { test, expect } from '@playwright/test';"
+                      - generic [ref=e331]: import AxeBuilder from '@axe-core/playwright'; // 1
+                      - generic [ref=e333]: "test.describe('homepage', () => { // 2"
+                      - generic [ref=e334]: "test('should not have any automatically detectable accessibility issues', async ({ page }) => {"
+                      - generic [ref=e335]: await page.goto('https://your-site.com/'); // 3
+                      - generic [ref=e337]: "const accessibilityScanResults = await new AxeBuilder({ page }).analyze(); // 4"
+                      - generic [ref=e339]: expect(accessibilityScanResults.violations).toEqual([]); // 5
+                      - generic [ref=e340]: "});"
+                      - generic [ref=e341]: "});"
+                    - generic [ref=e342]:
+                      - button "Toggle word wrap" [ref=e343] [cursor=pointer]:
+                        - img [ref=e344]
+                      - button "Copy code to clipboard" [ref=e346] [cursor=pointer]:
+                        - generic [ref=e347]:
+                          - img [ref=e348]
+                          - img [ref=e350]
+              - heading "Configuring axe to scan a specific part of a pageDirect link to Configuring axe to scan a specific part of a page" [level=3] [ref=e352]:
+                - text: Configuring axe to scan a specific part of a page
+                - link "Direct link to Configuring axe to scan a specific part of a page" [ref=e353] [cursor=pointer]:
+                  - /url: "#configuring-axe-to-scan-a-specific-part-of-a-page"
+                  - text: "#"
+              - paragraph [ref=e354]:
+                - code [ref=e355]: "@axe-core/playwright"
+                - text: supports many configuration options for axe. You can specify these options by using a Builder pattern with the
+                - code [ref=e356]: AxeBuilder
+                - text: class.
+              - paragraph [ref=e357]:
+                - text: For example, you can use
+                - link "AxeBuilder.include()" [ref=e358] [cursor=pointer]:
+                  - /url: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md#axebuilderincludeselector-string--string
+                  - code [ref=e359]: AxeBuilder.include()
+                - text: to constrain an accessibility scan to only run against one specific part of a page.
+              - paragraph [ref=e360]:
+                - code [ref=e361]: AxeBuilder.analyze()
+                - text: will scan the page
+                - emphasis [ref=e362]: in its current state
+                - text: when you call it. To scan parts of a page that are revealed based on UI interactions, use
+                - link "Locators" [ref=e363] [cursor=pointer]:
+                  - /url: /docs/locators
+                - text: to interact with the page before invoking
+                - code [ref=e364]: analyze()
+                - text: ":"
+              - generic [ref=e366]:
+                - code [ref=e368]:
+                  - generic [ref=e369]: "test('navigation menu should not have automatically detectable accessibility violations', async ({"
+                  - generic [ref=e370]: page,
+                  - generic [ref=e371]: "}) => {"
+                  - generic [ref=e372]: await page.goto('https://your-site.com/');
+                  - generic [ref=e374]: "await page.getByRole('button', { name: 'Navigation Menu' }).click();"
+                  - generic [ref=e376]: // It is important to waitFor() the page to be in the desired
+                  - generic [ref=e377]: // state *before* running analyze(). Otherwise, axe might not
+                  - generic [ref=e378]: // find all the elements your test expects it to scan.
+                  - generic [ref=e379]: await page.locator('#navigation-menu-flyout').waitFor();
+                  - generic [ref=e381]: "const accessibilityScanResults = await new AxeBuilder({ page })"
+                  - generic [ref=e382]: .include('#navigation-menu-flyout')
+                  - generic [ref=e383]: .analyze();
+                  - generic [ref=e385]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e386]: "});"
+                - generic [ref=e387]:
+                  - button "Toggle word wrap" [ref=e388] [cursor=pointer]:
+                    - img [ref=e389]
+                  - button "Copy code to clipboard" [ref=e391] [cursor=pointer]:
+                    - generic [ref=e392]:
+                      - img [ref=e393]
+                      - img [ref=e395]
+              - heading "Scanning for WCAG violationsDirect link to Scanning for WCAG violations" [level=3] [ref=e397]:
+                - text: Scanning for WCAG violations
+                - link "Direct link to Scanning for WCAG violations" [ref=e398] [cursor=pointer]:
+                  - /url: "#scanning-for-wcag-violations"
+                  - text: "#"
+              - paragraph [ref=e399]:
+                - text: By default, axe checks against a wide variety of accessibility rules. Some of these rules correspond to specific success criteria from the
+                - link "Web Content Accessibility Guidelines (WCAG)" [ref=e400] [cursor=pointer]:
+                  - /url: https://www.w3.org/TR/WCAG21/
+                - text: ", and others are \"best practice\" rules that are not specifically required by any WCAG criterion."
+              - paragraph [ref=e401]:
+                - text: You can constrain an accessibility scan to only run those rules which are "tagged" as corresponding to specific WCAG success criteria by using
+                - link "AxeBuilder.withTags()" [ref=e402] [cursor=pointer]:
+                  - /url: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md#axebuilderwithtagstags-stringarray
+                  - code [ref=e403]: AxeBuilder.withTags()
+                - text: . For example,
+                - link "Accessibility Insights for Web's Automated Checks" [ref=e404] [cursor=pointer]:
+                  - /url: https://accessibilityinsights.io/docs/web/getstarted/fastpass/?referrer=playwright-accessibility-testing-js
+                - text: only include axe rules that test for violations of WCAG A and AA success criteria; to match that behavior, you would use the tags
+                - code [ref=e405]: wcag2a
+                - text: ","
+                - code [ref=e406]: wcag2aa
+                - text: ","
+                - code [ref=e407]: wcag21a
+                - text: ", and"
+                - code [ref=e408]: wcag21aa
+                - text: .
+              - paragraph [ref=e409]: Note that automated testing cannot detect all types of WCAG violations.
+              - generic [ref=e411]:
+                - code [ref=e413]:
+                  - generic [ref=e414]: "test('should not have any automatically detectable WCAG A or AA violations', async ({ page }) => {"
+                  - generic [ref=e415]: await page.goto('https://your-site.com/');
+                  - generic [ref=e417]: "const accessibilityScanResults = await new AxeBuilder({ page })"
+                  - generic [ref=e418]: .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+                  - generic [ref=e419]: .analyze();
+                  - generic [ref=e421]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e422]: "});"
+                - generic [ref=e423]:
+                  - button "Toggle word wrap" [ref=e424] [cursor=pointer]:
+                    - img [ref=e425]
+                  - button "Copy code to clipboard" [ref=e427] [cursor=pointer]:
+                    - generic [ref=e428]:
+                      - img [ref=e429]
+                      - img [ref=e431]
+              - paragraph [ref=e433]:
+                - text: You can find a complete listing of the rule tags axe-core supports in
+                - link "the \"Axe-core Tags\" section of the axe API documentation" [ref=e434] [cursor=pointer]:
+                  - /url: https://www.deque.com/axe/core-documentation/api-documentation/#axecore-tags
+                - text: .
+              - heading "Handling known issuesDirect link to Handling known issues" [level=2] [ref=e435]:
+                - text: Handling known issues
+                - link "Direct link to Handling known issues" [ref=e436] [cursor=pointer]:
+                  - /url: "#handling-known-issues"
+                  - text: "#"
+              - paragraph [ref=e437]: A common question when adding accessibility tests to an application is "how do I suppress known violations?" The following examples demonstrate a few techniques you can use.
+              - heading "Excluding individual elements from a scanDirect link to Excluding individual elements from a scan" [level=3] [ref=e438]:
+                - text: Excluding individual elements from a scan
+                - link "Direct link to Excluding individual elements from a scan" [ref=e439] [cursor=pointer]:
+                  - /url: "#excluding-individual-elements-from-a-scan"
+                  - text: "#"
+              - paragraph [ref=e440]:
+                - text: If your application contains a few specific elements with known issues, you can use
+                - link "AxeBuilder.exclude()" [ref=e441] [cursor=pointer]:
+                  - /url: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md#axebuilderexcludeselector-string--string
+                  - code [ref=e442]: AxeBuilder.exclude()
+                - text: to exclude them from being scanned until you're able to fix the issues.
+              - paragraph [ref=e443]: "This is usually the simplest option, but it has some important downsides:"
+              - list [ref=e444]:
+                - listitem [ref=e445]:
+                  - code [ref=e446]: exclude()
+                  - text: will exclude the specified elements
+                  - emphasis [ref=e447]: and all of their descendants
+                  - text: . Avoid using it with components that contain many children.
+                - listitem [ref=e448]:
+                  - code [ref=e449]: exclude()
+                  - text: will prevent
+                  - emphasis [ref=e450]: all
+                  - text: rules from running against the specified elements, not just the rules corresponding to known issues.
+              - paragraph [ref=e451]: "Here is an example of excluding one element from being scanned in one specific test:"
+              - generic [ref=e453]:
+                - code [ref=e455]:
+                  - generic [ref=e456]: "test('should not have any accessibility violations outside of elements with known issues', async ({"
+                  - generic [ref=e457]: page,
+                  - generic [ref=e458]: "}) => {"
+                  - generic [ref=e459]: await page.goto('https://your-site.com/page-with-known-issues');
+                  - generic [ref=e461]: "const accessibilityScanResults = await new AxeBuilder({ page })"
+                  - generic [ref=e462]: .exclude('#element-with-known-issue')
+                  - generic [ref=e463]: .analyze();
+                  - generic [ref=e465]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e466]: "});"
+                - generic [ref=e467]:
+                  - button "Toggle word wrap" [ref=e468] [cursor=pointer]:
+                    - img [ref=e469]
+                  - button "Copy code to clipboard" [ref=e471] [cursor=pointer]:
+                    - generic [ref=e472]:
+                      - img [ref=e473]
+                      - img [ref=e475]
+              - paragraph [ref=e477]:
+                - text: If the element in question is used repeatedly in many pages, consider
+                - link "using a test fixture" [ref=e478] [cursor=pointer]:
+                  - /url: "#using-a-test-fixture-for-common-axe-configuration"
+                - text: to reuse the same
+                - code [ref=e479]: AxeBuilder
+                - text: configuration across multiple tests.
+              - heading "Disabling individual scan rulesDirect link to Disabling individual scan rules" [level=3] [ref=e480]:
+                - text: Disabling individual scan rules
+                - link "Direct link to Disabling individual scan rules" [ref=e481] [cursor=pointer]:
+                  - /url: "#disabling-individual-scan-rules"
+                  - text: "#"
+              - paragraph [ref=e482]:
+                - text: If your application contains many different preexisting violations of a specific rule, you can use
+                - link "AxeBuilder.disableRules()" [ref=e483] [cursor=pointer]:
+                  - /url: https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md#axebuilderdisablerulesrules-stringarray
+                  - code [ref=e484]: AxeBuilder.disableRules()
+                - text: to temporarily disable individual rules until you're able to fix the issues.
+              - paragraph [ref=e485]:
+                - text: You can find the rule IDs to pass to
+                - code [ref=e486]: disableRules()
+                - text: in the
+                - code [ref=e487]: id
+                - text: property of the violations you want to suppress. A
+                - link "complete list of axe's rules" [ref=e488] [cursor=pointer]:
+                  - /url: https://github.com/dequelabs/axe-core/blob/master/doc/rule-descriptions.md
+                - text: can be found in
+                - code [ref=e489]: axe-core
+                - text: "'s documentation."
+              - generic [ref=e491]:
+                - code [ref=e493]:
+                  - generic [ref=e494]: "test('should not have any accessibility violations outside of rules with known issues', async ({"
+                  - generic [ref=e495]: page,
+                  - generic [ref=e496]: "}) => {"
+                  - generic [ref=e497]: await page.goto('https://your-site.com/page-with-known-issues');
+                  - generic [ref=e499]: "const accessibilityScanResults = await new AxeBuilder({ page })"
+                  - generic [ref=e500]: .disableRules(['duplicate-id'])
+                  - generic [ref=e501]: .analyze();
+                  - generic [ref=e503]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e504]: "});"
+                - generic [ref=e505]:
+                  - button "Toggle word wrap" [ref=e506] [cursor=pointer]:
+                    - img [ref=e507]
+                  - button "Copy code to clipboard" [ref=e509] [cursor=pointer]:
+                    - generic [ref=e510]:
+                      - img [ref=e511]
+                      - img [ref=e513]
+              - heading "Using snapshots to allow specific known issuesDirect link to Using snapshots to allow specific known issues" [level=3] [ref=e515]:
+                - text: Using snapshots to allow specific known issues
+                - link "Direct link to Using snapshots to allow specific known issues" [ref=e516] [cursor=pointer]:
+                  - /url: "#using-snapshots-to-allow-specific-known-issues"
+                  - text: "#"
+              - paragraph [ref=e517]:
+                - text: If you would like to allow for a more granular set of known issues, you can use
+                - link "Snapshots" [ref=e518] [cursor=pointer]:
+                  - /url: /docs/test-snapshots
+                - text: to verify that a set of preexisting violations has not changed. This approach avoids the downsides of using
+                - code [ref=e519]: AxeBuilder.exclude()
+                - text: at the cost of slightly more complexity and fragility.
+              - paragraph [ref=e520]:
+                - text: Do not use a snapshot of the entire
+                - code [ref=e521]: accessibilityScanResults.violations
+                - text: "array. It contains implementation details of the elements in question, such as a snippet of their rendered HTML; if you include these in your snapshots, it will make your tests prone to breaking every time one of the components in question changes for an unrelated reason:"
+              - generic [ref=e523]:
+                - code [ref=e525]:
+                  - generic [ref=e526]: // Don't do this! This is fragile.
+                  - generic [ref=e527]: expect(accessibilityScanResults.violations).toMatchSnapshot();
+                - button "Copy code to clipboard" [ref=e529] [cursor=pointer]:
+                  - generic [ref=e530]:
+                    - img [ref=e531]
+                    - img [ref=e533]
+              - paragraph [ref=e535]:
+                - text: Instead, create a
+                - emphasis [ref=e536]: fingerprint
+                - text: "of the violation(s) in question that contains only enough information to uniquely identify the issue, and use a snapshot of the fingerprint:"
+              - generic [ref=e538]:
+                - code [ref=e540]:
+                  - generic [ref=e541]: // This is less fragile than snapshotting the entire violations array.
+                  - generic [ref=e542]: expect(violationFingerprints(accessibilityScanResults)).toMatchSnapshot();
+                  - generic [ref=e544]: // my-test-utils.js
+                  - generic [ref=e545]: "function violationFingerprints(accessibilityScanResults) {"
+                  - generic [ref=e546]: "const violationFingerprints = accessibilityScanResults.violations.map(violation => ({"
+                  - generic [ref=e547]: "rule: violation.id,"
+                  - generic [ref=e548]: // These are CSS selectors which uniquely identify each element with
+                  - generic [ref=e549]: // a violation of the rule in question.
+                  - generic [ref=e550]: "targets: violation.nodes.map(node => node.target),"
+                  - generic [ref=e551]: "}));"
+                  - generic [ref=e553]: return JSON.stringify(violationFingerprints, null, 2);
+                  - generic [ref=e554]: "}"
+                - generic [ref=e555]:
+                  - button "Toggle word wrap" [ref=e556] [cursor=pointer]:
+                    - img [ref=e557]
+                  - button "Copy code to clipboard" [ref=e559] [cursor=pointer]:
+                    - generic [ref=e560]:
+                      - img [ref=e561]
+                      - img [ref=e563]
+              - heading "Exporting scan results as a test attachmentDirect link to Exporting scan results as a test attachment" [level=2] [ref=e565]:
+                - text: Exporting scan results as a test attachment
+                - link "Direct link to Exporting scan results as a test attachment" [ref=e566] [cursor=pointer]:
+                  - /url: "#exporting-scan-results-as-a-test-attachment"
+                  - text: "#"
+              - paragraph [ref=e567]:
+                - text: Most accessibility tests are primarily concerned with the
+                - code [ref=e568]: violations
+                - text: property of the axe scan results. However, the scan results contain more than just
+                - code [ref=e569]: violations
+                - text: . For example, the results also contain information about rules which passed and about elements which axe found to have inconclusive results for some rules. This information can be useful for debugging tests that aren't detecting all the violations you expect them to.
+              - paragraph [ref=e570]:
+                - text: To include
+                - emphasis [ref=e571]: all
+                - text: of the scan results as part of your test results for debugging purposes, you can add the scan results as a test attachment with
+                - link "testInfo.attach()" [ref=e572] [cursor=pointer]:
+                  - /url: /docs/api/class-testinfo#test-info-attach
+                  - code [ref=e573]: testInfo.attach()
+                - text: .
+                - link "Reporters" [ref=e574] [cursor=pointer]:
+                  - /url: /docs/test-reporters
+                - text: can then embed or link the full results as part of your test output.
+              - paragraph [ref=e575]: "The following example demonstrates attaching scan results to a test:"
+              - generic [ref=e577]:
+                - code [ref=e579]:
+                  - generic [ref=e580]: "test('example with attachment', async ({ page }, testInfo) => {"
+                  - generic [ref=e581]: await page.goto('https://your-site.com/');
+                  - generic [ref=e583]: "const accessibilityScanResults = await new AxeBuilder({ page }).analyze();"
+                  - generic [ref=e585]: "await testInfo.attach('accessibility-scan-results', {"
+                  - generic [ref=e586]: "body: JSON.stringify(accessibilityScanResults, null, 2),"
+                  - generic [ref=e587]: "contentType: 'application/json'"
+                  - generic [ref=e588]: "});"
+                  - generic [ref=e590]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e591]: "});"
+                - generic [ref=e592]:
+                  - button "Toggle word wrap" [ref=e593] [cursor=pointer]:
+                    - img [ref=e594]
+                  - button "Copy code to clipboard" [ref=e596] [cursor=pointer]:
+                    - generic [ref=e597]:
+                      - img [ref=e598]
+                      - img [ref=e600]
+              - heading "Using a test fixture for common axe configurationDirect link to Using a test fixture for common axe configuration" [level=2] [ref=e602]:
+                - text: Using a test fixture for common axe configuration
+                - link "Direct link to Using a test fixture for common axe configuration" [ref=e603] [cursor=pointer]:
+                  - /url: "#using-a-test-fixture-for-common-axe-configuration"
+                  - text: "#"
+              - paragraph [ref=e604]:
+                - link "Test fixtures" [ref=e605] [cursor=pointer]:
+                  - /url: /docs/test-fixtures
+                - text: are a good way to share common
+                - code [ref=e606]: AxeBuilder
+                - text: "configuration across many tests. Some scenarios where this might be useful include:"
+              - list [ref=e607]:
+                - listitem [ref=e608]: Using a common set of rules among all of your tests
+                - listitem [ref=e609]: Suppressing a known violation in a common element which appears in many different pages
+                - listitem [ref=e610]: Attaching standalone accessibility reports consistently for many scans
+              - paragraph [ref=e611]: The following example demonstrates creating and using a test fixture that covers each of those scenarios.
+              - heading "Creating a fixtureDirect link to Creating a fixture" [level=3] [ref=e612]:
+                - text: Creating a fixture
+                - link "Direct link to Creating a fixture" [ref=e613] [cursor=pointer]:
+                  - /url: "#creating-a-fixture"
+                  - text: "#"
+              - paragraph [ref=e614]:
+                - text: This example fixture creates an
+                - code [ref=e615]: AxeBuilder
+                - text: object which is pre-configured with shared
+                - code [ref=e616]: withTags()
+                - text: and
+                - code [ref=e617]: exclude()
+                - text: configuration.
+              - generic [ref=e618]:
+                - tablist [ref=e619]:
+                  - tab "TypeScript" [selected] [ref=e620] [cursor=pointer]
+                  - tab "JavaScript" [ref=e621] [cursor=pointer]
+                - tabpanel [ref=e623]:
+                  - generic [ref=e624]:
+                    - generic [ref=e625]: axe-test.ts
+                    - generic [ref=e626]:
+                      - code [ref=e628]:
+                        - generic [ref=e629]: "import { test as base } from '@playwright/test';"
+                        - generic [ref=e630]: import AxeBuilder from '@axe-core/playwright';
+                        - generic [ref=e632]: "type AxeFixture = {"
+                        - generic [ref=e633]: "makeAxeBuilder: () => AxeBuilder;"
+                        - generic [ref=e634]: "};"
+                        - generic [ref=e636]: // Extend base test by providing "makeAxeBuilder"
+                        - generic [ref=e637]: //
+                        - generic [ref=e638]: // This new "test" can be used in multiple test files, and each of them will get
+                        - generic [ref=e639]: // a consistently configured AxeBuilder instance.
+                        - generic [ref=e640]: "export const test = base.extend<AxeFixture>({"
+                        - generic [ref=e641]: "makeAxeBuilder: async ({ page }, use) => {"
+                        - generic [ref=e642]: "const makeAxeBuilder = () => new AxeBuilder({ page })"
+                        - generic [ref=e643]: .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+                        - generic [ref=e644]: .exclude('#commonly-reused-element-with-known-issue');
+                        - generic [ref=e646]: await use(makeAxeBuilder);
+                        - generic [ref=e647]: "}"
+                        - generic [ref=e648]: "});"
+                        - generic [ref=e649]: "export { expect } from '@playwright/test';"
+                      - generic [ref=e650]:
+                        - button "Toggle word wrap" [ref=e651] [cursor=pointer]:
+                          - img [ref=e652]
+                        - button "Copy code to clipboard" [ref=e654] [cursor=pointer]:
+                          - generic [ref=e655]:
+                            - img [ref=e656]
+                            - img [ref=e658]
+              - heading "Using a fixtureDirect link to Using a fixture" [level=3] [ref=e660]:
+                - text: Using a fixture
+                - link "Direct link to Using a fixture" [ref=e661] [cursor=pointer]:
+                  - /url: "#using-a-fixture"
+                  - text: "#"
+              - paragraph [ref=e662]:
+                - text: To use the fixture, replace the earlier examples'
+                - code [ref=e663]: "new AxeBuilder({ page })"
+                - text: with the newly defined
+                - code [ref=e664]: makeAxeBuilder
+                - text: "fixture:"
+              - generic [ref=e666]:
+                - code [ref=e668]:
+                  - generic [ref=e669]: "const { test, expect } = require('./axe-test');"
+                  - generic [ref=e671]: "test('example using custom fixture', async ({ page, makeAxeBuilder }) => {"
+                  - generic [ref=e672]: await page.goto('https://your-site.com/');
+                  - generic [ref=e674]: const accessibilityScanResults = await makeAxeBuilder()
+                  - generic [ref=e675]: // Automatically uses the shared AxeBuilder configuration,
+                  - generic [ref=e676]: // but supports additional test-specific configuration too
+                  - generic [ref=e677]: .include('#specific-element-under-test')
+                  - generic [ref=e678]: .analyze();
+                  - generic [ref=e680]: expect(accessibilityScanResults.violations).toEqual([]);
+                  - generic [ref=e681]: "});"
+                - generic [ref=e682]:
+                  - button "Toggle word wrap" [ref=e683] [cursor=pointer]:
+                    - img [ref=e684]
+                  - button "Copy code to clipboard" [ref=e686] [cursor=pointer]:
+                    - generic [ref=e687]:
+                      - img [ref=e688]
+                      - img [ref=e690]
+          - navigation "Docs pages" [ref=e692]:
+            - link "Previous « Library" [ref=e693] [cursor=pointer]:
+              - /url: /docs/library
+              - generic [ref=e694]: Previous
+              - generic [ref=e695]: « Library
+            - link "Next Actions »" [ref=e696] [cursor=pointer]:
+              - /url: /docs/input
+              - generic [ref=e697]: Next
+              - generic [ref=e698]: Actions »
+        - list [ref=e701]:
+          - listitem [ref=e702]:
+            - link "Introduction" [ref=e703] [cursor=pointer]:
+              - /url: "#introduction"
+          - listitem [ref=e704]:
+            - link "Example accessibility tests" [ref=e705] [cursor=pointer]:
+              - /url: "#example-accessibility-tests"
+            - list [ref=e706]:
+              - listitem [ref=e707]:
+                - link "Scanning an entire page" [ref=e708] [cursor=pointer]:
+                  - /url: "#scanning-an-entire-page"
+              - listitem [ref=e709]:
+                - link "Configuring axe to scan a specific part of a page" [ref=e710] [cursor=pointer]:
+                  - /url: "#configuring-axe-to-scan-a-specific-part-of-a-page"
+              - listitem [ref=e711]:
+                - link "Scanning for WCAG violations" [ref=e712] [cursor=pointer]:
+                  - /url: "#scanning-for-wcag-violations"
+          - listitem [ref=e713]:
+            - link "Handling known issues" [ref=e714] [cursor=pointer]:
+              - /url: "#handling-known-issues"
+            - list [ref=e715]:
+              - listitem [ref=e716]:
+                - link "Excluding individual elements from a scan" [ref=e717] [cursor=pointer]:
+                  - /url: "#excluding-individual-elements-from-a-scan"
+              - listitem [ref=e718]:
+                - link "Disabling individual scan rules" [ref=e719] [cursor=pointer]:
+                  - /url: "#disabling-individual-scan-rules"
+              - listitem [ref=e720]:
+                - link "Using snapshots to allow specific known issues" [ref=e721] [cursor=pointer]:
+                  - /url: "#using-snapshots-to-allow-specific-known-issues"
+          - listitem [ref=e722]:
+            - link "Exporting scan results as a test attachment" [ref=e723] [cursor=pointer]:
+              - /url: "#exporting-scan-results-as-a-test-attachment"
+          - listitem [ref=e724]:
+            - link "Using a test fixture for common axe configuration" [ref=e725] [cursor=pointer]:
+              - /url: "#using-a-test-fixture-for-common-axe-configuration"
+            - list [ref=e726]:
+              - listitem [ref=e727]:
+                - link "Creating a fixture" [ref=e728] [cursor=pointer]:
+                  - /url: "#creating-a-fixture"
+              - listitem [ref=e729]:
+                - link "Using a fixture" [ref=e730] [cursor=pointer]:
+                  - /url: "#using-a-fixture"
+  - contentinfo [ref=e731]:
+    - generic [ref=e732]:
+      - generic [ref=e733]:
+        - generic [ref=e734]:
+          - generic [ref=e735]: Learn
+          - list [ref=e736]:
+            - listitem [ref=e737]:
+              - link "Getting started" [ref=e738] [cursor=pointer]:
+                - /url: /docs/intro
+            - listitem [ref=e739]:
+              - link "Playwright Training(opens in new tab)" [ref=e740] [cursor=pointer]:
+                - /url: https://learn.microsoft.com/en-us/training/modules/build-with-playwright/
+                - text: Playwright Training
+                - img "(opens in new tab)" [ref=e741]
+            - listitem [ref=e743]:
+              - link "Learn Videos" [ref=e744] [cursor=pointer]:
+                - /url: /community/learn-videos
+            - listitem [ref=e745]:
+              - link "Feature Videos" [ref=e746] [cursor=pointer]:
+                - /url: /community/feature-videos
+        - generic [ref=e747]:
+          - generic [ref=e748]: Community
+          - list [ref=e749]:
+            - listitem [ref=e750]:
+              - link "Stack Overflow(opens in new tab)" [ref=e751] [cursor=pointer]:
+                - /url: https://stackoverflow.com/questions/tagged/playwright
+                - text: Stack Overflow
+                - img "(opens in new tab)" [ref=e752]
+            - listitem [ref=e754]:
+              - link "Discord(opens in new tab)" [ref=e755] [cursor=pointer]:
+                - /url: https://aka.ms/playwright/discord
+                - text: Discord
+                - img "(opens in new tab)" [ref=e756]
+            - listitem [ref=e758]:
+              - link "X(opens in new tab)" [ref=e759] [cursor=pointer]:
+                - /url: https://x.com/playwrightweb
+                - text: X
+                - img "(opens in new tab)" [ref=e760]
+            - listitem [ref=e762]:
+              - link "LinkedIn(opens in new tab)" [ref=e763] [cursor=pointer]:
+                - /url: https://www.linkedin.com/company/playwrightweb
+                - text: LinkedIn
+                - img "(opens in new tab)" [ref=e764]
+        - generic [ref=e766]:
+          - generic [ref=e767]: More
+          - list [ref=e768]:
+            - listitem [ref=e769]:
+              - link "GitHub(opens in new tab)" [ref=e770] [cursor=pointer]:
+                - /url: https://github.com/microsoft/playwright
+                - text: GitHub
+                - img "(opens in new tab)" [ref=e771]
+            - listitem [ref=e773]:
+              - link "YouTube(opens in new tab)" [ref=e774] [cursor=pointer]:
+                - /url: https://www.youtube.com/channel/UC46Zj8pDH5tDosqm1gd7WTg
+                - text: YouTube
+                - img "(opens in new tab)" [ref=e775]
+            - listitem [ref=e777]:
+              - link "Blog(opens in new tab)" [ref=e778] [cursor=pointer]:
+                - /url: https://dev.to/playwright
+                - text: Blog
+                - img "(opens in new tab)" [ref=e779]
+            - listitem [ref=e781]:
+              - link "Ambassadors" [ref=e782] [cursor=pointer]:
+                - /url: /community/ambassadors
+            - listitem [ref=e783]:
+              - link "Microsoft Privacy Statement(opens in new tab)" [ref=e784] [cursor=pointer]:
+                - /url: https://go.microsoft.com/fwlink/?LinkId=521839
+                - text: Microsoft Privacy Statement
+                - img "(opens in new tab)" [ref=e785]
+      - generic [ref=e788]: Copyright © 2026 Microsoft
+```
+
+# Test source
+
+```ts
+  1 | import { test, expect } from '@playwright/test';
+  2 | 
+  3 | test('test which should pass @regression', async ({ page }) => {
+  4 |   await page.goto('https://playwright.dev/docs/accessibility-testing');
+> 5 |   expect(await page.title()).toBe('Playwright');
+    |                              ^ Error: expect(received).toBe(expected) // Object.is equality
+  6 | });
+```
