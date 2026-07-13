@@ -1,2 +1,3 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","160","Add and validate new Item @smoke","integration","Mon Jul 13 07:40:38 UTC 2026","failed","Mon Jul 13 07:40:39 UTC 2026","","browser/mainPage.spec.ts","",""
+"","770","test which should pass @mobile","integration","Mon Jul 13 07:50:57 UTC 2026","passed","Mon Jul 13 07:50:57 UTC 2026","","browser/test11.spec.ts","",""
+"","284","test which should pass @mobile","integration","Mon Jul 13 07:50:58 UTC 2026","passed","Mon Jul 13 07:50:59 UTC 2026","","mobile/mobileTest.spec.ts","",""
