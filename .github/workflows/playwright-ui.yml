@@ -12,6 +12,7 @@ on:
           - all
           - smoke
           - regression
+          - mobile
 
       environment:
         description: Test environment
