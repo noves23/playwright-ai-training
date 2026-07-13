@@ -1,2 +1,2 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","725","test which should pass @regression","integration","Mon Jul 13 07:12:20 UTC 2026","passed","Mon Jul 13 07:12:21 UTC 2026","","browser/test11.spec.ts","",""
+"","160","Add and validate new Item @smoke","integration","Mon Jul 13 07:40:38 UTC 2026","failed","Mon Jul 13 07:40:39 UTC 2026","","browser/mainPage.spec.ts","",""

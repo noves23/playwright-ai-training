@@ -1,1 +1,1 @@
-[{"uid":"ba79dd11c98bc770","name":"test which should pass @regression","time":{"start":1783926740519,"stop":1783926741244,"duration":725},"status":"passed","severity":"normal"}]
+[{"uid":"74160a44c82b769","name":"Add and validate new Item @smoke","time":{"start":1783928438848,"stop":1783928439008,"duration":160},"status":"failed","severity":"normal"}]
