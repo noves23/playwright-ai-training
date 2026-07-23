@@ -1,1 +1,1 @@
-[]
+[{"uid":"79e7ceabeae428a2","name":"test which should pass @mobile","time":{"start":1784811618958,"stop":1784811619497,"duration":539},"status":"passed","severity":"normal"},{"uid":"5c611f2e8bff8262","name":"test which should pass @mobile","time":{"start":1784811619885,"stop":1784811620160,"duration":275},"status":"passed","severity":"normal"}]
